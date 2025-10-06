@@ -12,12 +12,12 @@
     flex: 1;
 }
 
-.categories-table {
+.form-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.categories-table th {
+.form-table th {
     text-align: left;
     padding: 12px;
     background-color: #f5f5f5;
@@ -25,23 +25,23 @@
     font-weight: 600;
 }
 
-.categories-table td {
+.form-table td {
     padding: 10px 12px;
     border-bottom: 1px solid #ddd;
 }
 
-.categories-table tbody tr:hover {
+.form-table tbody tr:hover {
     background-color: #f9f9f9;
 }
 
-.categories-table tbody tr .btn-edit,
-.categories-table tbody tr .btn-delete {
+.form-table tbody tr .btn-edit,
+.form-table tbody tr .btn-delete {
     opacity: 0;
     transition: opacity 0.2s;
 }
 
-.categories-table tbody tr:hover .btn-edit,
-.categories-table tbody tr:hover .btn-delete {
+.form-table tbody tr:hover .btn-edit,
+.form-table tbody tr:hover .btn-delete {
     opacity: 1;
 }
 

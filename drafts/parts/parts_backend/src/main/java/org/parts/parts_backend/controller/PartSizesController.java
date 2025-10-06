@@ -1,6 +1,7 @@
 package org.parts.parts_backend.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -29,8 +30,13 @@ class PartSizesController {
     @GetMapping
     @Operation(summary = "Get all part sizes", description = "Retrieves a list of all part sizes")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved list of part sizes")
-    List<PartSize> all() {
-        return service.findAll();
+    List<PartSize> all(
+            @Parameter(description = "Search keyword to filter part sizes by id (case-insensitive)")
+            @RequestParam(required = false) String id) {
+        var trimmed = id == null ? null : id.trim();
+        if (trimmed == null || trimmed.isEmpty())
+            return service.findAll();
+        return service.findByIdContainingIgnoreCase(trimmed);
     }
 
     @PostMapping
@@ -46,7 +52,7 @@ class PartSizesController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update a PartSize", description = "Updates an existing part size by its ID")
+    @Operation(summary = "Update a part size", description = "Updates an existing part size by its ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Part size updated successfully",
                     content = @Content(schema = @Schema(implementation = PartSize.class))),
@@ -63,10 +69,10 @@ class PartSizesController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete a PartSize", description = "Deletes a PartSize by its ID")
+    @Operation(summary = "Delete a part size", description = "Deletes a part size by its ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "PartSize deleted successfully"),
-            @ApiResponse(responseCode = "404", description = "PartSize not found")
+            @ApiResponse(responseCode = "204", description = "Part size deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "Part size not found")
     })
     ResponseEntity<Void> delete(@PathVariable String id) {
         try {

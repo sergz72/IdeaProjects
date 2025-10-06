@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './CategoriesForm.css';
+import './forms.css';
 
 function CategoriesForm() {
     const [categories, setCategories] = useState([]);
@@ -58,7 +58,7 @@ function CategoriesForm() {
 
         setValidationError('');
 
-        fetch('http://localhost:8080/categories', {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/categories`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ function CategoriesForm() {
 
         setValidationError('');
 
-        fetch(`http://localhost:8080/categories/${id}`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ function CategoriesForm() {
             return;
         }
 
-        fetch(`http://localhost:8080/categories/${id}`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/categories/${id}`, {
             method: 'DELETE',
         })
             .then(response => {
@@ -177,7 +177,7 @@ function CategoriesForm() {
             </form>
             {validationError && <p style={{ color: 'red', marginTop: '5px' }}>{validationError}</p>}
 
-            <table className="categories-table">
+            <table className="form-table">
                 <thead>
                 <tr>
                     <th>ID</th>

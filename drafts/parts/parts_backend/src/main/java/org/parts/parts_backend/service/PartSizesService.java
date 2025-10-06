@@ -21,6 +21,10 @@ public class PartSizesService {
         return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
+    public List<PartSize> findByIdContainingIgnoreCase(String searchString) {
+        return repository.findByIdContainingIgnoreCase(searchString, Sort.by(Sort.Direction.ASC, "id"));
+    }
+
     public PartSize findById(String id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Part size not found: " + id));
