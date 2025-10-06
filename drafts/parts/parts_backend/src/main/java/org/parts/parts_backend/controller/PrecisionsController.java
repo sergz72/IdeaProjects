@@ -22,7 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/precisions")
-@Tag(name = "precisions", description = "Precision management APIs")
+@Tag(name = "Precisions", description = "Precision management APIs")
 class PrecisionsController {
     private final PrecisionsService precisionsService;
 
